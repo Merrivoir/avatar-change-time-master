@@ -10,7 +10,6 @@ client.start()
 
 while True:
     change_img()
-    client(DeletePhotosRequest(client.get_profile_photos('me')))
     photo = client.upload_file(f"time.png")
     try:
         client(UploadProfilePhotoRequest(file=photo))
@@ -18,6 +17,7 @@ while True:
         time.sleep(e.seconds)
         print(e.seconds)
     time.sleep(59)
+    client(DeletePhotosRequest(client.get_profile_photos('me')))
 
 if __name__ == '__main__':
 	pass
