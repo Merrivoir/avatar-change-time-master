@@ -16,6 +16,7 @@ while True:
         client(UploadProfilePhotoRequest(file=photo))
     except errors.FloodWaitError as e:
         time.sleep(e.seconds)
+        print(e.seconds)
     time.sleep(59)
 
 if __name__ == '__main__':
