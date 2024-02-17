@@ -10,12 +10,12 @@ client.start()
 
 while True:
     change_img()
-    photo = client.upload_file(f"time.png")
     try:
+        photo = client.upload_file(f"time.png")
         client(UploadProfilePhotoRequest(file=photo))
     except errors.FloodWaitError as e:
-        time.sleep(e.seconds)
         print(e.seconds)
+        time.sleep(e.seconds)
     time.sleep(59)
     client(DeletePhotosRequest(client.get_profile_photos('me')))
 
