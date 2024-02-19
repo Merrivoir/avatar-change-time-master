@@ -14,9 +14,9 @@ while True:
     try:
         client(UploadProfilePhotoRequest(file=photo))
     except errors.FloodWaitError as e:
-        time.sleep(e.seconds)
         print(e.seconds)
-    time.sleep(59)
+        time.sleep(e.seconds)
+    time.sleep(60)
     client(DeletePhotosRequest(client.get_profile_photos('me')))
 
 if __name__ == '__main__':
