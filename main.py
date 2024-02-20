@@ -13,13 +13,14 @@ client.start()
 
 while True:
     change_img()
-    photo = client.upload_file(f"time.png")
     try:
-        client(UploadProfilePhotoRequest(file=photo))
+        photo = client.upload_file(f"time.png")
         logging.info(f"Фото загружено")
+        client(UploadProfilePhotoRequest(file=photo))
+        logging.info(f"Фото профиля установлено")
         time.sleep(300)
         client(DeletePhotosRequest(client.get_profile_photos('me')))
-        logging.info(f"Фото удалено")
+        logging.info(f"Фото профиля удалено")
     except errors.FloodWaitError as e:
         print(e.seconds)
         logging.info(f"Ошибка флуда: необходимо подождать {e.seconds} секунд.")
